@@ -13,8 +13,12 @@ Dans le contexte de ce projet, les données au format parquet sont prealablement
 - Etape (1) : Extraction des données brutes depuis le bucket minio <br>
 
 - Etape (2) : Transformation des données extraites suivant un data modeling bien elaborées.<br>
+Pour le modeling je me suis fortement inspiré du data modeling realisé par un mentor et senior data engineer : <a href = "https://github.com/darshilparmar">darshil parmar</a>.
+Suivant ce modeling, les scripts de transformation des données ont été realisé pour l'alimatentation de notre base de données postgresql.
 
 - Etape (3) : Loading des données dans base de données realitionnels Postgresql<br>
+Il s'agit de l'etape de stockage des données transformnées  dans un systeme  de stockages realationnels 
+et mise aux bons format avant leurs utilisations pour besoins de l'analytics.
 
 - Etape (4) : Realisation des test unitaires des fonctions des differentes fonctions de l'ETL<br>
 La liste des tests realisés seront  :  
@@ -34,6 +38,9 @@ La liste des tests realisés seront  :
         -> check sur les types de données
         -> check comparaison sur les uniques de chaques colonnes.
         <br>
+
+### Architecture
+![image archi](archi_project_000.png)
 
 #### Tests
 Dans le contexte de ce projet, nous avons realisé divers test notament :
@@ -62,3 +69,17 @@ Dans le contexte de ce projet, nous avons realisé divers test notament :
 (7) On passe ensuite à l'etape des tests de notre pipeline de données 
 - test unitaire 
 - test d'integration 
+
+
+## RESULTATS
+- test unitaire : 
+#### visuel : 
+
+#### explications : 
+
+- test performance
+#### visuel : 
+
+#### explications : 
+
+## CONCLUSIONS
