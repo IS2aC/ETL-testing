@@ -1,0 +1,7 @@
+payment_type_id,payment_type,payment_type_name
+0,1.0,Credit card
+1,2.0,Cash
+2,3.0,No charge
+3,4.0,Dispute
+4,5.0,Unknown
+5,,

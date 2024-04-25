@@ -1,4 +1,5 @@
 ## ETL - TESTING -PROCESS
+![image front](etl-testing-img.png)
 
 ### ENGLISH VERSION
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -21,11 +22,43 @@ La liste des tests realisés seront  :
         -> check des colonnes dans les dataframes
         -> check des dimensions
         -> check sur les types de données
-        -> check comparaison sur les deux dataframes extrait et existants
+        -> check comparaison sur les uniques de chaques colonnes.
+        -> check sur l'alteration des données au transport 
         <br>
     - (2) Etape transformation:
-        ->
+        ->  check des colonnes pour les differents dataframes de la table de fait et des differentes tables de dimension.
         <br>
     - (3) Etape loading:
-        ->
+        -> check des colonnes charger en base de données 
+        -> check des dimensions
+        -> check sur les types de données
+        -> check comparaison sur les uniques de chaques colonnes.
         <br>
+
+#### Tests
+Dans le contexte de ce projet, nous avons realisé divers test notament :
+- TESTS UNITAIRES
+- TESTS D'INTEGRATION 
+
+
+### TUTORIELS
+(1) Lancer l'instance docker minio presente dans le fichier docker compose en tappant :
+> *docker compose up* ou *docker-compose up* 
+<br>
+
+(2) Acceder à l'UI de minio créer un bucket  avec les credentials :
+> user : minioadmin / password : minioadmin
+> dans notre cas ce sera :  nyc-cab-data
+
+(3) Une fois le bucket créer insérer manuellement le fichier tabulaires dans le bucket par drag and drop
+*nb : Dans notre exemple le fichier associées à l'eperience est dans le repertoire data/data_for_bucket_minio*
+
+(4) Dans le fichier shared/credentials_engine.py, verifié la configuration des credentials postgresql et minio
+
+(5) Excécuté le main de l'application 
+
+(6) Observé les logs dans le fichier logs.log pour un rapport complet de ceux qui à été realiser.
+
+(7) On passe ensuite à l'etape des tests de notre pipeline de données 
+- test unitaire 
+- test d'integration 

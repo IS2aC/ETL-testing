@@ -1,0 +1,8 @@
+rate_code_id,RatecodeID,rate_code_name
+0,1.0,Standard rate
+1,5.0,Negotiated fare
+2,4.0,Nassau or Westchester
+3,3.0,Newark
+4,2.0,JFK
+5,99.0,
+6,,

@@ -1,6 +1,6 @@
 from etl.extraction import read_file_from_minio
 from etl.transformation import create_fact_table, create_dimension
-from etl.loading import load_to_postgresql, load_to_csv
+from etl.loading import load_to_postgresql
 
 
 class ETLFromMinioToPostgresql:
@@ -22,13 +22,23 @@ class ETLFromMinioToPostgresql:
     
     def transform(self, df):
         fact_table = create_fact_table(df)
-        # dimensions_on_dictionnary = create_dimension(df)
-        return fact_table
+        dimensions_on_dictionnary = create_dimension(df)
+
+        return fact_table, dimensions_on_dictionnary
     
-    def load(self, fact_table):
+    def load(self, fact_table, dimensions_on_dictionnary):
         # loading fact_table
-        # load_to_postgresql(df = fact_table, table_name="fact_table", engine = self.engine_postgresql)
-        load_to_csv(df = fact_table)
+        load_to_postgresql(df = fact_table, table_name="fact_table", engine = self.engine_postgresql)
+
+        # loading dimensions_on_dictionnary
+        for key in dimensions_on_dictionnary.keys():
+            dimensions_on_dictionnary[key].to_csv(f'data/correct_data/{key}.csv', index =  False)
+
+
+        # load fact_table
+        fact_table.to_csv('data/correct_data/fact_table.csv', index =  False)
+
+
 
 
     def launch_etl(self):
@@ -37,11 +47,11 @@ class ETLFromMinioToPostgresql:
         print('EXTRACTION OK !')
 
         # Étape 2 : Transformation des données
-        fact_table = self.transform(df)
+        fact_table, dimensions_on_dictionnary = self.transform(df)
         print('TRANSFORMATION OK !')
         
         # Étape 3 : Chargement des données transformées dans PostgreSQL
-        self.load(fact_table)
+        self.load(fact_table, dimensions_on_dictionnary)
         print('CHARGEMENT OK !')
 
         print("ETL processus terminé avec succès.")
