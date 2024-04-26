@@ -1,7 +1,7 @@
 """ Performance test of datapipeline """
 
 import pytest
-import pytest_benchmark
+
 from shared.credential_engine import minio_client, engine_db
 from etl.etl import ETLFromMinioToPostgresql
 

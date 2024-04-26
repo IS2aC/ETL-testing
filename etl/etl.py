@@ -47,10 +47,10 @@ class ETLFromMinioToPostgresql:
 
         # loading dimensions
         for key in dimensions_on_dictionnary.keys():
-            load_to_postgresql(df =  dimensions_on_dictionnary[key], table_name=key, engine=self.engine_postgresql)
+            load_to_postgresql(df =  dimensions_on_dictionnary[key], table_name=key, connection_db=self.engine_postgresql)
 
-        # loading fact_table
-        load_to_postgresql(df = fact_table, table_name="fact_table", engine = self.engine_postgresql)
+        # # loading fact_table
+        load_to_postgresql(df = fact_table, table_name="fact_table", connection_db = self.engine_postgresql)
 
 
         # loading dimensions_on_dictionnary

@@ -169,7 +169,7 @@ Dans le contexte de ce projet, nous avons realisé divers test notament :
 <br>
 
 #### visuel : 
-![image archi](pic/test_unitaire.png)
+![image archi](pic/test_unitaire_test.png)
 
 #### explications : 
 Dans le contexte du test unitaire, les tests sont realisées sur les differents composants de notre solution.
