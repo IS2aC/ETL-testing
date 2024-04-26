@@ -1,8 +1,20 @@
 from io import BytesIO
 import pandas as pd
 import pyarrow.parquet as pq
+from minio import Minio
 
-def read_file_from_minio(bucket_name, object_name, minio_client, extension = None):
+def read_file_from_minio(bucket_name:str, object_name:str, minio_client:Minio, extension:str = None) -> pd.DataFrame:
+    """make extraction of a dataframe from minio bucket
+
+    Args:
+        bucket_name (str): bucket where object name stay.
+        object_name (str): name of object to extract
+        minio_client (Minio): credentials to access on api of minio
+        extension (str, optional): type of file to extract(ex: csv, avro, parquet, etc..). Defaults to None.
+
+    Returns:
+        pd.DataFrame: dataframe of data extract on object storage space.
+    """
 
     try:
         # Télécharger l'objet depuis MinIO

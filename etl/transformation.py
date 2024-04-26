@@ -1,7 +1,15 @@
 import pandas as pd 
 
 # fonctions de creation des dimensions
-def create_datetime_dim(df):
+def create_datetime_dim(df:pd.DataFrame) -> pd.DataFrame:
+    """ make date dimension from data extract on minio
+
+    Args:
+        df (pd.DataFrame): dataframe of data from minio
+
+    Returns:
+        pd.DataFrame: date dimenion for data modeling
+    """
     try :
         df['lpep_pickup_datetime'] = pd.to_datetime(df['lpep_pickup_datetime'])
         df['lpep_dropoff_datetime'] = pd.to_datetime(df['lpep_dropoff_datetime'])
@@ -26,7 +34,16 @@ def create_datetime_dim(df):
     except:
         print("Données non-conforme ! ")
 
-def create_passenger_count_dim(df):
+def create_passenger_count_dim(df:pd.DataFrame) -> pd.DataFrame:
+    """make passenger count dimension from data extract on minio
+
+    Args:
+        df (pd.DataFrame): datframe of data from minio
+
+    Returns:
+        pd.DataFrame: passenger count dimension for data modeling
+    """
+
     try : 
         passenger_count_dim = df[['passenger_count']].drop_duplicates().reset_index(drop=True)
         passenger_count_dim['passenger_count_id'] = passenger_count_dim.index
@@ -37,7 +54,15 @@ def create_passenger_count_dim(df):
     except:
         print("Données non-conforme ! ")
 
-def create_trip_distance_dim(df):
+def create_trip_distance_dim(df:pd.DataFrame) -> pd.DataFrame:
+    """make trip distance dimension from dataframe extract on minio
+
+    Args:
+        df (pd.DataFrame): datframe of data from minio
+
+    Returns:
+        pd.DataFrame: trip distance dimension for data modeling
+    """
     try : 
         trip_distance_dim = df[['trip_distance']].drop_duplicates().reset_index(drop=True)
         trip_distance_dim['trip_distance_id'] = trip_distance_dim.index
@@ -46,7 +71,15 @@ def create_trip_distance_dim(df):
     except:
         print('Données non-conforme ! ')
 
-def create_rate_code_dim(df):
+def create_rate_code_dim(df:pd.DataFrame) -> pd.DataFrame:
+    """make rate code dimension from data extract on minio
+
+    Args:
+        df (pd.DataFrame): datframe of data from minio
+
+    Returns:
+        pd.DataFrame: rate code dimension for data modeling
+    """
     rate_code_type = {
     1:"Standard rate",
     2:"JFK",
@@ -64,7 +97,15 @@ def create_rate_code_dim(df):
     except:
         print('Données non-conforme ! ')
 
-def create_payment_type_dim(df):
+def create_payment_type_dim(df:pd.DataFrame) -> pd.DataFrame:
+    """make payment type dimension from data extract on minio
+    Args:
+        df (pd.DataFrame): dataframe of data from minio
+
+    Returns:
+        pd.DataFrame: payemnt type dimension for data modeling
+    """
+    
     payment_type_name = {
     1:"Credit card",
     2:"Cash",
@@ -81,9 +122,20 @@ def create_payment_type_dim(df):
         return payment_type_dim
     except:
         print('Données non-conforme ! ')
+
 ####################################################################################################################################################################################
 # all dimenssions in one element !
-def create_dimension(df):
+def create_dimension(df:pd.DataFrame)-> dict:
+    """make a dictionary of all dimensions on our data modeling
+    as dimension's name  on key and dimension's dataframe on value
+
+    Args:
+        df (pd.DataFrame): dataframe of data extract on minio
+
+    Returns:
+        pd.DataFrame: dictionary of dimensionof all dimensions for data modeling on one entity.
+    """
+
     try:
         dimensions_on_dictionnary =  {
             "datetime_dim" : create_datetime_dim(df),
@@ -98,7 +150,16 @@ def create_dimension(df):
         print('Données non-conforme ! ')
 
 # fonctions de creation de la table de faits
-def create_fact_table(df):
+def create_fact_table(df:pd.DataFrame)->pd.DataFrame:
+    """make fact table from data extract on minio
+
+    Args:
+        df (pd.DataFrame): dataframe of data extract on minio
+
+    Returns:
+        pd.DataFrame: fact table of our data modeling
+    """
+
     try:
         datetime_dim = create_datetime_dim(df)
         passenger_count_dim = create_passenger_count_dim(df)
