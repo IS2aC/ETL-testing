@@ -21,6 +21,8 @@ In the context of this project, various tests were conducted, including:
 
 ### TUTORIALS
 (1) Launch the MinIO Docker instance present in the docker-compose file by typing:
+> *docker compose up* ou *docker-compose up* 
+<br>
 
 (2) Access the MinIO UI, create a bucket with the following credentials:
 - URL: http://localhost:9001/
@@ -49,7 +51,7 @@ In the context of this project, various tests were conducted, including:
 <br>
 
 #### visual : 
-![image archi](pic/test_unitaire.png)
+![image archi](pic/test_unitaire_test.png)
 
 #### explanation : 
 In the context of unit testing, tests are conducted on the various components of our solution. In an ETL, components are categorized into extraction, transformation, and loading scripts. The visual defines the report of unit tests that have been successfully conducted.
@@ -132,6 +134,7 @@ La liste des tests realisés seront  :
 Dans le contexte de ce projet, nous avons realisé divers test notament :
 - TESTS UNITAIRES
 - TESTS D'INTEGRATION 
+- TEST DE PERFORMANCE
 
 
 ### TUTORIELS
@@ -169,7 +172,7 @@ Dans le contexte de ce projet, nous avons realisé divers test notament :
 <br>
 
 #### visuel : 
-![image archi](pic/test_unitaire_test.png)
+![image archi000](pic/test_unitaire_test.png)
 
 #### explications : 
 Dans le contexte du test unitaire, les tests sont realisées sur les differents composants de notre solution.
@@ -186,7 +189,7 @@ Le visuel, definit le rapport des tests unitaires qui se sont realisées avec su
 <br>
 
 #### visuel : 
-![image archi](pic/test_integration.png)
+![image archi1](pic/test_integration.png)
 
 
 #### explications : 
@@ -202,7 +205,7 @@ Dans le contexte de notre projet, le test d'intégration vise principalement à 
 <br>
 
 #### visuel : 
-![image archi](pic/test_performance.png)
+![image archi2](pic/test_performance.png)
 
 
 #### explications : 
