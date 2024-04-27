@@ -56,10 +56,18 @@ def create_table_if_not_exists(table_name, connection_db, table_definition):
 
 
 def load_to_postgresql(df: pd.DataFrame, connection_db: pe.connection, table_name: str):
+    """data loading on poastgresql database instance !
+
+    Args:
+        df (pd.DataFrame): dataframe of data to insert into database
+        connection_db (pe.connection): engine connection to database instance
+        table_name (str): table name of database
+    """
+
     try:
-        # Vérifier si la table existe, sinon la créer
+        # check table name existance
         if not table_exists(table_name, connection_db):
-            # Définir la définition de la table en utilisant les noms et types des colonnes du DataFrame
+            # formatting columns dataframe before table creation
             table_definition = ", ".join([f"{col} VARCHAR" for col in df.columns])
             create_table_if_not_exists(table_name, connection_db, table_definition)
 

@@ -110,11 +110,6 @@ class TestEtlLoad:
         except Exception as e:
             pytest.fail(f"Load process raised an exception: {e}")
 
-    # drop data on database first
-    # def test_load_check_dimensions(self):
-    #     assert test_data_transform_factable.shape == pd.read_sql('select * from fact_table', engine_db).shape
-        # possible to make the same test for all table on our database
-
 
     
 
