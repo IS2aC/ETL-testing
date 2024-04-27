@@ -86,6 +86,34 @@ class TestEtlTransformation:
                 assert len(dimensions_dictionnary[key][col].unique()) == len(test_data_transform_dimensions_dictionnary[key][col].unique())
 
 
+class TestEtlLoad:
+    @pytest.fixture
+    def etl_load(self):
+        # Setup for the ETL Load test
+        etl_class = ETLFromMinioToPostgresql(
+            bucket_name='nyc-cab-data',
+            object_name='green_tripdata_2024-01.parquet',
+            minio_client=minio_client,  # This should be mocked or a real initialized minio client
+            psotgresql_table_name='fact_table',
+            engine_postgresql=engine_db  # This should be a connection or a pool connected to a test database
+        )
+        df = etl_class.extract()
+        fact_table, dimensions_dictionnary = etl_class.transform(df)
+        return etl_class, fact_table, dimensions_dictionnary
+
+    def test_load_process_runs_without_errors(self, etl_load):
+        etl_class, fact_table, dimensions_dictionnary = etl_load
+        # Running the load function, which should not raise an exception
+        try:
+            etl_class.load(fact_table, dimensions_dictionnary)
+            assert True
+        except Exception as e:
+            pytest.fail(f"Load process raised an exception: {e}")
+
+    # drop data on database first
+    # def test_load_check_dimensions(self):
+    #     assert test_data_transform_factable.shape == pd.read_sql('select * from fact_table', engine_db).shape
+        # possible to make the same test for all table on our database
 
 
     
