@@ -12,8 +12,8 @@ class TestEtlIntegration:
     def etl_instance(self):
         # instanciation of etl instance
         etl = ETLFromMinioToPostgresql(
-            minio_client=mc,
-            postgresql_client=pc
+            minio_client = mc,
+            postgresql_client = pc
         )
         return etl
 
