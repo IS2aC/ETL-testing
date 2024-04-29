@@ -51,7 +51,7 @@ def create_table_if_not_exists(table_name, connection_db, table_definition):
     finally:
         # close cursor
         if cursor:
-            cursor.close()
+            cursor.close() 
 
 
 

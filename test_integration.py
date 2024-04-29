@@ -1,6 +1,10 @@
 import pytest
 from etl.etl import ETLFromMinioToPostgresql
 from shared.credential_engine import minio_client, engine_db
+from etl.model import PostgresqlClient, MinioClient
+
+mc =  MinioClient(bucket_name = 'nyc-cab-data', object_name = 'green_tripdata_2024-01.parquet', minio_client = minio_client)
+pc = PostgresqlClient(engine = engine_db)
 
 class TestEtlIntegration:
     """TEST INTEGRATION"""
@@ -8,11 +12,8 @@ class TestEtlIntegration:
     def etl_instance(self):
         # instanciation of etl instance
         etl = ETLFromMinioToPostgresql(
-            bucket_name='test-nyc-cab-data',
-            object_name='test_green_tripdata_2024-01.parquet',
-            minio_client=minio_client, 
-            psotgresql_table_name='test_table',
-            engine_postgresql=engine_db 
+            minio_client=mc,
+            postgresql_client=pc
         )
         return etl
 
